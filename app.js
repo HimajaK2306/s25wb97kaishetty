@@ -28,12 +28,18 @@ app.use('/grid', gridRouter);
 
 app.get('/gridbuild', function(req, res) {
   let query = req.query;
-  console.log(`rows ${query.rows}`);
-  console.log(`cols ${query.cols}`);
 
-  res.render('grid', { title: "Make a grid", query: query });
+  // Convert query parameters to numbers
+  let rows = parseInt(query.rows, 10) || 0;
+  let cols = parseInt(query.cols, 10) || 0;
+
+  // Debugging: Log parsed values
+  console.log(`Parsed rows: ${rows}`);
+  console.log(`Parsed cols: ${cols}`);
+
+  // Pass the parsed numbers to the template
+  res.render('grid', { title: "Make a grid", query: { rows, cols } });
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,4 +58,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
 
