@@ -7,8 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var quarriesRouter = require('./routes/quarries');
-var app = express();
 var gridRouter = require('./routes/grid');
+var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +26,15 @@ app.use('/users', usersRouter);
 app.use('/quarries', quarriesRouter);
 app.use('/grid', gridRouter);
 
+app.get('/gridbuild', function(req, res) {
+  let query = req.query;
+  console.log(`rows ${query.rows}`);
+  console.log(`cols ${query.cols}`);
+
+  res.render('grid', { title: "Make a grid", query: query });
+});
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -39,13 +49,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-app.get('/gridbuild', function(req, res) {
-  let query = req.query;
-  console.log(`rows ${query.rows}`);
-  console.log(`cols ${query.cols}`);
-
-  res.render('grid', { title: "Make a grid", query: query });
 });
 
 module.exports = app;
