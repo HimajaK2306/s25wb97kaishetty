@@ -4,15 +4,26 @@ block content
   h1= title
   p This is the grid display page.
 
-  if query.rows && query.cols
-    p Displaying a grid of #{query.rows} rows and #{query.cols} columns:
+  // Display the raw query parameters
+  p Query rows: #{query.rows}, Query cols: #{query.cols}
 
-    div.container
-      each rowIndex in Array.from({ length: query.rows }, (_, i) => i)
-        div.row
-          each colIndex in Array.from({ length: query.cols }, (_, i) => i)
-            div.col-sm-2(style="border: 1px solid black; padding: 10px; text-align: center;")
-              p Grid Cell #{(rowIndex * query.cols) + colIndex + 1}
+  // Convert query parameters to numbers
+  - let rows = Number(query.rows)
+  - let cols = Number(query.cols)
 
+  // Validate input
+  if !Number.isInteger(rows) || !Number.isInteger(cols)
+    p Error: Rows and columns must be integers.
+  else if rows < 3 || rows > 13
+    p Error: Rows must be between 3 and 13.
+  else if cols < 3 || cols > 13
+    p Error: Columns must be between 3 and 13.
   else
-    p No rows or columns specified in the query.
+    // Safe input: Generate table
+    table#outer(style="border-collapse: collapse; width: 50%; text-align: center;")
+      - for (let i = 0; i < rows; i++) {
+        tr#middle
+          - for (let j = 0; j < cols; j++) {
+            td(style="border: 1px solid black; padding: 10px;")= i - j
+          - }
+      - }
