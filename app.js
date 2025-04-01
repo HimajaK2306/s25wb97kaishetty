@@ -38,7 +38,7 @@ app.get('/gridbuild', function(req, res) {
   console.log(`Parsed cols: ${cols}`);
 
   // Pass the parsed numbers to the template
-  res.render('grid', { title: "Make a grid", query: { rows, cols } });
+  res.render('grid', { title: "Grid Display", query: { rows, cols } });
 });
 
 // catch 404 and forward to error handler
