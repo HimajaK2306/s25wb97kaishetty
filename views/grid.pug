@@ -4,14 +4,13 @@ block content
   h1= title
   p This is the grid display page.
 
-  // Display the raw query parameters
   p Query rows: #{query.rows}, Query cols: #{query.cols}
 
-  // Convert query parameters to numbers
+ 
   - let rows = Number(query.rows)
   - let cols = Number(query.cols)
 
-  // Validate input
+ 
   if !Number.isInteger(rows) || !Number.isInteger(cols)
     p Error: Rows and columns must be integers.
   else if rows < 3 || rows > 13
@@ -19,7 +18,7 @@ block content
   else if cols < 3 || cols > 13
     p Error: Columns must be between 3 and 13.
   else
-    // Safe input: Generate table
+   
     table#outer(style="border-collapse: collapse; width: 50%; text-align: center;")
       - for (let i = 0; i < rows; i++) {
         tr#middle

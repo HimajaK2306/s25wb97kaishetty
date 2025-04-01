@@ -4,7 +4,7 @@ block content
   h1= title
   p Below are some quarry search results:
 
-  //- Step 1: Define sample data using unbuffered server-side code
+  
   -
     let results = [
       { name: "Granite Hills", depth_meters: 50, material: "Granite" },
@@ -12,7 +12,7 @@ block content
       { name: "Marble Valley", depth_meters: 45, material: "Marble" }
     ];
 
-  //- Step 2 & 3: Bootstrap grid structure
+  
   .container-fluid
     .row
       each quarry in results
@@ -21,6 +21,6 @@ block content
           p Depth: #{quarry.depth_meters} meters
           p Material: #{quarry.material}
 
-  //- Step 8: Add a hyperlink back to the home page
+  
   p
     a(href="/") Back to Home
