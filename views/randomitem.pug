@@ -8,18 +8,18 @@ html
         alert("You purchased item " + index);
       }
   body
-    h1 Search Results
-    p Here are some items you can buy:
+    h1 A Random Item
+    p Here are some random items:
 
-    - var results = [
-      { name: 'Item 1', image: 'item1.jpeg' },
-      { name: 'Item 2', image: 'item2.jpeg' },
-      { name: 'Item 3', image: 'item3.jpeg' },
-      { name: 'Item 4', image: 'item4.jpeg' },
-      { name: 'Item 5', image: 'item5.jpeg' }
-    ];
+    - var image_names = ['item1.jpeg', 'item2.jpeg', 'item3.jpeg', 'item4.jpeg', 'item5.jpeg'];
 
-    each item, index in results
-      div(onclick=`buy(${index})`, style="cursor:pointer; padding:10px; border:1px solid black; margin:5px;")
-        img(src=`/images/${item.image}`, alt=`${item.name}`, width="300", height="300", style="margin:10px; border:2px solid black;")
-        p #{item.name}
+    div
+      - for (var i = 0; i < 3; i++)
+        - var randomIndex = Math.floor(Math.random() * image_names.length);
+        img(
+          src=`/images/${image_names[randomIndex]}`, 
+          alt=`Random Item ${i+1}`, 
+          width="300", height="300", 
+          style="margin:10px; border:2px solid black; cursor:pointer;",
+          onclick=`buy(${randomIndex})`
+        )
