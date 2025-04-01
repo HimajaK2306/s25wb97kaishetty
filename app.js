@@ -26,7 +26,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/quarries', quarriesRouter);
 app.use('/grid', gridRouter);
-app.use('/selector', pickRouter);
+app.use('/pick', pickRouter);
 
 app.get('/gridbuild', function(req, res) {
   let query = req.query;
