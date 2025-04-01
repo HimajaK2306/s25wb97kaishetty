@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1 Search Results - Quarries
-  p Here are some famous quarries around the world:
+  h1= title
+  p Below are some quarry search results:
+
+  //- Step 1: Define sample data using unbuffered server-side code
+  -
+    let results = [
+      { name: "Granite Hills", depth_meters: 50, material: "Granite" },
+      { name: "Limestone Cove", depth_meters: 30, material: "Limestone" },
+      { name: "Marble Valley", depth_meters: 45, material: "Marble" }
+    ];
+
+  //- Step 2 & 3: Bootstrap grid structure
+  .container-fluid
+    .row
+      each quarry in results
+        .col-sm-3.border.p-2
+          h3 #{quarry.name}
+          p Depth: #{quarry.depth_meters} meters
+          p Material: #{quarry.material}
+
+  //- Step 8: Add a hyperlink back to the home page
+  p
+    a(href="/") Back to Home
