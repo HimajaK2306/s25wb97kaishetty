@@ -1,24 +1,23 @@
 extends layout
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script.
-      function buy(index) {
-        alert("You purchased item " + index);
-      }
-  body
-    h1 A Random Item
-    p Here are some random items:
 
-    - var image_names = ['item1.jpeg', 'item2.jpeg', 'item3.jpeg', 'item4.jpeg', 'item5.jpeg'];
+block content
+  h1 A Random Item
+  p Here are some random items:
 
-    div
-      - for (var i = 0; i < 3; i++)
-        - var randomIndex = Math.floor(Math.random() * image_names.length);
-        img(
-          src=`/images/${image_names[randomIndex]}`, 
-          alt=`Random Item ${i+1}`, 
-          width="300", height="300", 
-          style="margin:10px; border:2px solid black; cursor:pointer;",
-          onclick=`buy(${randomIndex})`
-        )
+  - var image_names = ['item1.jpeg', 'item2.jpeg', 'item3.jpeg', 'item4.jpeg', 'item5.jpeg'];
+
+  div
+    - for (var i = 0; i < 3; i++)
+      - var randomIndex = Math.floor(Math.random() * image_names.length);
+      img(
+        src=`/images/${image_names[randomIndex]}`, 
+        alt=`Random Item ${i+1}`, 
+        width="300", height="300", 
+        style="margin:10px; border:2px solid black; cursor:pointer;",
+        onclick=`buy(${randomIndex})`
+      )
+
+  script.
+    function buy(index) {
+      alert("You purchased item " + index);
+    }
